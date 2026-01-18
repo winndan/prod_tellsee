@@ -1,3 +1,14 @@
+# ==================================================
+# BLOCK APSW (MUST BE FIRST — DO NOT MOVE)
+# ==================================================
+import sys
+sys.modules["apsw"] = None
+sys.modules["apswutils"] = None
+
+
+# ==================================================
+# NOW SAFE TO IMPORT FASTHTML / MONSTERUI
+# ==================================================
 from fasthtml.common import *
 from monsterui.all import *
 
@@ -25,7 +36,9 @@ logger = logging.getLogger("app")
 # ==================================================
 logger.info("Initializing FastHTML app")
 
-app, rt = fast_app(hdrs=Theme.slate.headers(mode="dark"))
+app, rt = fast_app(
+    hdrs=Theme.slate.headers(mode="dark")
+)
 
 # IMPORTANT: import auth AFTER rt exists
 import backend.auth
