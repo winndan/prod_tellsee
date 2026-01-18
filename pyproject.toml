@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "apswutils>=0.1.2",
     "monsterui>=1.0.37",
     "python-dotenv>=1.2.1",
     "python-fasthtml>=0.12.39",

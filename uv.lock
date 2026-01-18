@@ -1543,6 +1543,7 @@ name = "tellsee-prod"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "apswutils" },
     { name = "monsterui" },
     { name = "python-dotenv" },
     { name = "python-fasthtml" },
@@ -1551,6 +1552,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "apswutils", specifier = ">=0.1.2" },
     { name = "monsterui", specifier = ">=1.0.37" },
     { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "python-fasthtml", specifier = ">=0.12.39" },
