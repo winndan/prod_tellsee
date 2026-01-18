@@ -1,11 +1,11 @@
 # ==================================================
-# APSW / APSWUTILS FULL STUB — REQUIRED FOR VERCEL
+# APSW / APSWUTILS COMPLETE STUB — REQUIRED FOR VERCEL
 # MUST BE FIRST
 # ==================================================
 import sys
 import types
 
-# ---- apsw stub ----
+# ---------------- apsw (native) ----------------
 fake_apsw = types.ModuleType("apsw")
 fake_apsw.ext = types.ModuleType("ext")
 fake_apsw.bestpractice = types.ModuleType("bestpractice")
@@ -16,22 +16,35 @@ sys.modules["apsw.ext"] = fake_apsw.ext
 sys.modules["apsw.bestpractice"] = fake_apsw.bestpractice
 sys.modules["apsw.unicode"] = fake_apsw.unicode
 
-# ---- apswutils stub (package) ----
+# ---------------- apswutils (package) ----------------
 fake_apswutils = types.ModuleType("apswutils")
 fake_apswutils.__path__ = []          # mark as package
-fake_apswutils.Database = object      # <-- REQUIRED by fasthtml
+fake_apswutils.Database = object      # used by fasthtml
 sys.modules["apswutils"] = fake_apswutils
 
-# ---- apswutils.db stub ----
+# ---------------- apswutils.db ----------------
 fake_apswutils_db = types.ModuleType("apswutils.db")
-fake_apswutils_db.Database = object   # <-- REQUIRED by fastlite
+fake_apswutils_db.Database = object
 sys.modules["apswutils.db"] = fake_apswutils_db
+
+# ---------------- apswutils.utils ----------------
+fake_apswutils_utils = types.ModuleType("apswutils.utils")
+
+def _noop(*args, **kwargs):
+    return None
+
+fake_apswutils_utils.rows_from_file = _noop
+fake_apswutils_utils.TypeTracker = object
+fake_apswutils_utils.Format = object
+
+sys.modules["apswutils.utils"] = fake_apswutils_utils
 
 # ==================================================
 # NOW SAFE TO IMPORT FASTHTML / MONSTERUI
 # ==================================================
 from fasthtml.common import *
 from monsterui.all import *
+
 
 
 
