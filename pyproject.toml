@@ -7,6 +7,6 @@ requires-python = ">=3.11"
 dependencies = [
     "monsterui>=1.0.37",
     "python-dotenv>=1.2.1",
-    "python-fasthtml>=0.12.39",
+    "python-fasthtml",
     "supabase>=2.27.2",
 ]
