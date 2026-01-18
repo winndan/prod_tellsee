@@ -2,6 +2,7 @@
 # APSW / APSWUTILS STUB — REQUIRED FOR VERCEL
 # MUST BE FIRST
 # ==================================================
+###
 import sys
 import types
 
