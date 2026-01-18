@@ -18,13 +18,19 @@ sys.modules["apsw.unicode"] = fake_apsw.unicode
 
 # ---------------- apswutils (package) ----------------
 fake_apswutils = types.ModuleType("apswutils")
-fake_apswutils.__path__ = []          # mark as package
-fake_apswutils.Database = object      # used by fasthtml
+fake_apswutils.__path__ = []
+fake_apswutils.Database = object
 sys.modules["apswutils"] = fake_apswutils
 
 # ---------------- apswutils.db ----------------
 fake_apswutils_db = types.ModuleType("apswutils.db")
+
+class NotFoundError(Exception):
+    pass
+
 fake_apswutils_db.Database = object
+fake_apswutils_db.NotFoundError = NotFoundError
+
 sys.modules["apswutils.db"] = fake_apswutils_db
 
 # ---------------- apswutils.utils ----------------
@@ -44,6 +50,7 @@ sys.modules["apswutils.utils"] = fake_apswutils_utils
 # ==================================================
 from fasthtml.common import *
 from monsterui.all import *
+
 
 
 
