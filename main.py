@@ -421,9 +421,4 @@ def health_check():
 # LOCAL DEV ONLY
 # ==================================================
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5001))
-    logger.info(f"Starting server on 0.0.0.0:{port}")
-    serve(
-        host="0.0.0.0",
-        port=port,
-    )
+    serve()
