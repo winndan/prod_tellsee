@@ -1,11 +1,11 @@
 # ==================================================
-# APSW / APSWUTILS STUB — REQUIRED FOR VERCEL
+# APSW / APSWUTILS FULL STUB — REQUIRED FOR VERCEL
 # MUST BE FIRST
 # ==================================================
-###
 import sys
 import types
 
+# ---- apsw stub ----
 fake_apsw = types.ModuleType("apsw")
 fake_apsw.ext = types.ModuleType("ext")
 fake_apsw.bestpractice = types.ModuleType("bestpractice")
@@ -16,16 +16,22 @@ sys.modules["apsw.ext"] = fake_apsw.ext
 sys.modules["apsw.bestpractice"] = fake_apsw.bestpractice
 sys.modules["apsw.unicode"] = fake_apsw.unicode
 
+# ---- apswutils stub (must be a package) ----
 fake_apswutils = types.ModuleType("apswutils")
-fake_apswutils.Database = object
+fake_apswutils.__path__ = []  # marks it as a package
 sys.modules["apswutils"] = fake_apswutils
 
+# ---- apswutils.db stub (required by fastlite) ----
+fake_apswutils_db = types.ModuleType("apswutils.db")
+fake_apswutils_db.Database = object
+sys.modules["apswutils.db"] = fake_apswutils_db
 
 # ==================================================
 # NOW SAFE TO IMPORT FASTHTML / MONSTERUI
 # ==================================================
 from fasthtml.common import *
 from monsterui.all import *
+
 
 from backend.middleware import require_auth
 from landingpage import landingPage
