@@ -1,0 +1,11 @@
+[project]
+name = "tellsee-prod"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "monsterui>=1.0.37",
+    "python-fasthtml>=0.12.39",
+    "supabase>=2.27.2",
+]

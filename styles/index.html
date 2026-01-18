@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Competitive Intelligence Engine - Convert messy competitor data into deterministic strategy decisions. No guesses. No hallucinations. Just clarity.">
+  <title>Clarity Engine | Competitive Intelligence</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Added scroll progress indicator -->
+  <div class="scroll-progress">
+    <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+  </div>
+
+  <!-- ========================================
+       NAVIGATION
+  ======================================== -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">◇</span>
+        <span>Clarity</span>
+      </a>
+      <!-- Added mobile menu toggle button -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#differentiators">Why Us</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#cta-final" class="nav-cta">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================
+       HERO SECTION
+  ======================================== -->
+  <section class="hero">
+    <!-- Added animated gradient background and floating particles -->
+    <div class="hero-bg">
+      <div class="hero-glow"></div>
+      <div class="hero-glow hero-glow-2"></div>
+      <div class="particles" id="particles"></div>
+    </div>
+    <div class="container hero-content">
+      <!-- Added typing effect wrapper -->
+      <h1 class="hero-headline fade-in">
+        <span class="typing-text" id="typing-text"></span>
+        <span class="cursor">|</span>
+      </h1>
+      <p class="hero-subheadline fade-in">
+        Transform scattered competitor noise into structured signals — 
+        then let deterministic rules choose your <em>one clear move</em>.
+      </p>
+      <div class="hero-ctas fade-in">
+        <button class="btn btn-primary btn-glow" id="cta-primary">
+          <span>Start Making Decisions</span>
+          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="#how-it-works" class="btn btn-secondary">
+          <span>See How It Works</span>
+        </a>
+      </div>
+      <p class="hero-tagline fade-in">
+        Only perception is probabilistic. <strong>Decisions are deterministic.</strong>
+      </p>
+      <!-- Added scroll indicator -->
+      <div class="scroll-indicator fade-in">
+        <span>Scroll to explore</span>
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PROBLEM SECTION
+  ======================================== -->
+  <section class="problem" id="problem">
+    <div class="container">
+      <span class="section-label fade-in">The Problem</span>
+      <h2 class="section-headline fade-in">Strategy Shouldn't Feel Like Guesswork</h2>
+      <div class="problem-grid">
+        <!-- Added tilt-card class for hover effects -->
+        <div class="problem-card tilt-card fade-in">
+          <div class="card-shine"></div>
+          <div class="problem-icon pulse">◌</div>
+          <h3>Competitor Data Is Noisy</h3>
+          <p>Scattered signals across dozens of sources. No clear structure. No single source of truth.</p>
+        </div>
+        <div class="problem-card tilt-card fade-in">
+          <div class="card-shine"></div>
+          <div class="problem-icon pulse">◎</div>
+          <h3>Tools Overwhelm, Not Decide</h3>
+          <p>Dashboards flood you with metrics but leave the actual decision entirely to you.</p>
+        </div>
+        <div class="problem-card tilt-card fade-in">
+          <div class="card-shine"></div>
+          <div class="problem-icon pulse">◉</div>
+          <h3>AI Feels Random</h3>
+          <p>Generative models hallucinate strategy. Different outputs every time. No audit trail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       SOLUTION SECTION
+  ======================================== -->
+  <section class="solution" id="solution">
+    <div class="container">
+      <span class="section-label fade-in">The Solution</span>
+      <h2 class="section-headline fade-in">A System That Decides — Clearly</h2>
+      <div class="solution-grid">
+        <!-- Added reveal animation class -->
+        <div class="solution-item slide-in-left fade-in">
+          <div class="solution-number counter" data-target="01">01</div>
+          <h3>Signal Extraction</h3>
+          <p>Messy competitor information becomes structured, typed data. Every signal is categorized and validated.</p>
+        </div>
+        <div class="solution-item slide-in-left fade-in">
+          <div class="solution-number counter" data-target="02">02</div>
+          <h3>Deterministic Decision Engine</h3>
+          <p>Rules, not guesses. The same input always produces the same output. Predictable. Auditable. Trustworthy.</p>
+        </div>
+        <div class="solution-item slide-in-left fade-in">
+          <div class="solution-number counter" data-target="03">03</div>
+          <h3>Transparent Explanation</h3>
+          <p>Every decision comes with a clear explanation of why. No black boxes. Full accountability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       HOW IT WORKS SECTION
+  ======================================== -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <span class="section-label fade-in">How It Works</span>
+      <h2 class="section-headline fade-in">Four Steps to Strategic Clarity</h2>
+      <div class="pipeline">
+        <div class="pipeline-step fade-in">
+          <div class="step-icon float-animation">
+            <span>1</span>
+            <div class="step-ring"></div>
+          </div>
+          <h3>Input</h3>
+          <p>Feed in competitor information — articles, reports, announcements, observations.</p>
+        </div>
+        <!-- Added animated connector -->
+        <div class="pipeline-connector fade-in">
+          <div class="connector-line"></div>
+          <div class="connector-dot"></div>
+        </div>
+        <div class="pipeline-step fade-in">
+          <div class="step-icon float-animation" style="animation-delay: 0.2s">
+            <span>2</span>
+            <div class="step-ring"></div>
+          </div>
+          <h3>Extract</h3>
+          <p>Structured signals emerge from the noise. Typed. Categorized. Ready for analysis.</p>
+        </div>
+        <div class="pipeline-connector fade-in">
+          <div class="connector-line"></div>
+          <div class="connector-dot"></div>
+        </div>
+        <div class="pipeline-step fade-in">
+          <div class="step-icon float-animation" style="animation-delay: 0.4s">
+            <span>3</span>
+            <div class="step-ring"></div>
+          </div>
+          <h3>Decide</h3>
+          <p>Deterministic rules evaluate signals and select one optimal strategy.</p>
+        </div>
+        <div class="pipeline-connector fade-in">
+          <div class="connector-line"></div>
+          <div class="connector-dot"></div>
+        </div>
+        <div class="pipeline-step fade-in">
+          <div class="step-icon float-animation" style="animation-delay: 0.6s">
+            <span>4</span>
+            <div class="step-ring"></div>
+          </div>
+          <h3>Explain</h3>
+          <p>Receive a clear breakdown of why this decision was made.</p>
+        </div>
+      </div>
+      <p class="pipeline-quote fade-in">
+        "AI observes. Rules decide. <strong>You stay in control.</strong>"
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================
+       DIFFERENTIATORS SECTION
+  ======================================== -->
+  <section class="differentiators" id="differentiators">
+    <div class="container">
+      <span class="section-label fade-in">Why Clarity</span>
+      <h2 class="section-headline fade-in">Built for Trust, Not Novelty</h2>
+      <div class="diff-grid">
+        <!-- Added staggered animation delays -->
+        <div class="diff-card tilt-card fade-in" style="--delay: 0">
+          <div class="card-shine"></div>
+          <div class="diff-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>LLMs Never Decide Strategy</h3>
+            <p>AI extracts signals. Rules make decisions. The boundary is absolute.</p>
+          </div>
+        </div>
+        <div class="diff-card tilt-card fade-in" style="--delay: 1">
+          <div class="card-shine"></div>
+          <div class="diff-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Same Input → Same Decision</h3>
+            <p>Deterministic by design. Run it twice, get the same answer twice.</p>
+          </div>
+        </div>
+        <div class="diff-card tilt-card fade-in" style="--delay: 2">
+          <div class="card-shine"></div>
+          <div class="diff-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Fully Explainable Outcomes</h3>
+            <p>Every decision traces back to specific signals and rules. No mysteries.</p>
+          </div>
+        </div>
+        <div class="diff-card tilt-card fade-in" style="--delay: 3">
+          <div class="card-shine"></div>
+          <div class="diff-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>"Wait" Is a Valid Strategy</h3>
+            <p>Sometimes the best move is no move. The system knows when to hold.</p>
+          </div>
+        </div>
+        <div class="diff-card tilt-card fade-in" style="--delay: 4">
+          <div class="card-shine"></div>
+          <div class="diff-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Auditable by Default</h3>
+            <p>Every step is logged. Every decision is defensible. Built for compliance.</p>
+          </div>
+        </div>
+        <div class="diff-card tilt-card fade-in" style="--delay: 5">
+          <div class="card-shine"></div>
+          <div class="diff-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>No Hallucinated Strategy</h3>
+            <p>Zero tolerance for made-up insights. Only structured, validated signals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PRICING SECTION
+  ======================================== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <span class="section-label fade-in">Pricing</span>
+      <h2 class="section-headline fade-in">Simple, Transparent Pricing</h2>
+      <p class="pricing-subtitle fade-in">Choose the plan that fits your strategy needs. No free trials — just results.</p>
+      
+      <div class="pricing-grid">
+        <!-- Solo / Founder Tier -->
+        <div class="pricing-card tilt-card fade-in" style="--delay: 0">
+          <div class="card-shine"></div>
+          <div class="pricing-header">
+            <span class="pricing-tier">Solo / Founder</span>
+            <div class="pricing-price">
+              <span class="price-amount">$29</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <p class="pricing-description">Best for individual founders and early teams.</p>
+          </div>
+          <div class="pricing-features">
+            <div class="pricing-features-title">Includes:</div>
+            <ul>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>10 strategy decisions / month</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>All phases (1–4)</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Full explanations</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Cached results</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Email-only support</span>
+              </li>
+            </ul>
+            <div class="pricing-limits">
+              <div class="limits-title">Limits:</div>
+              <ul>
+                <li>Single business context</li>
+                <li>No exports</li>
+              </ul>
+            </div>
+          </div>
+          <div class="pricing-footer">
+            <button class="btn btn-secondary pricing-btn">Get Started</button>
+            <span class="pricing-note">$2.90 per decision</span>
+          </div>
+        </div>
+
+        <!-- Growth Tier (Popular) -->
+        <div class="pricing-card pricing-card-popular tilt-card fade-in" style="--delay: 1">
+          <div class="card-shine"></div>
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-header">
+            <span class="pricing-tier">Growth</span>
+            <div class="pricing-price">
+              <span class="price-amount">$79</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <p class="pricing-description">For startups actively tracking competitors.</p>
+          </div>
+          <div class="pricing-features">
+            <div class="pricing-features-title">Includes:</div>
+            <ul>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>40 strategy decisions / month</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Multiple competitor inputs</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Decision history</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Exportable results (PDF / JSON)</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Priority processing</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <button class="btn btn-primary btn-glow pricing-btn">Get Started</button>
+            <span class="pricing-note">$1.98 per decision</span>
+          </div>
+        </div>
+
+        <!-- Strategy Tier -->
+        <div class="pricing-card tilt-card fade-in" style="--delay: 2">
+          <div class="card-shine"></div>
+          <div class="pricing-header">
+            <span class="pricing-tier">Strategy</span>
+            <div class="pricing-price">
+              <span class="price-amount">$199</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <p class="pricing-description">For product & strategy teams.</p>
+          </div>
+          <div class="pricing-features">
+            <div class="pricing-features-title">Includes:</div>
+            <ul>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>150 strategy decisions / month</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Multiple business contexts</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Decision comparison (past vs current)</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Team sharing</span>
+              </li>
+              <li>
+                <span class="feature-check">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Priority support</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <button class="btn btn-secondary pricing-btn">Get Started</button>
+            <span class="pricing-note">$1.33 per decision</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PHILOSOPHY SECTION
+  ======================================== -->
+  <section class="philosophy" id="philosophy">
+    <div class="container">
+      <span class="section-label fade-in">Our Philosophy</span>
+      <h2 class="section-headline fade-in">Principles That Guide Us</h2>
+      <div class="philosophy-grid">
+        <!-- Added hover flip effect -->
+        <div class="philosophy-item flip-card fade-in">
+          <div class="philosophy-inner">
+            <span class="philosophy-keyword">Schemas</span>
+            <span class="philosophy-vs">over</span>
+            <span class="philosophy-contrast">Guesswork</span>
+          </div>
+        </div>
+        <div class="philosophy-item flip-card fade-in">
+          <div class="philosophy-inner">
+            <span class="philosophy-keyword">Rules</span>
+            <span class="philosophy-vs">over</span>
+            <span class="philosophy-contrast">Vibes</span>
+          </div>
+        </div>
+        <div class="philosophy-item flip-card fade-in">
+          <div class="philosophy-inner">
+            <span class="philosophy-keyword">Explanation</span>
+            <span class="philosophy-vs">over</span>
+            <span class="philosophy-contrast">Opacity</span>
+          </div>
+        </div>
+        <div class="philosophy-item flip-card fade-in">
+          <div class="philosophy-inner">
+            <span class="philosophy-keyword">Clarity</span>
+            <span class="philosophy-vs">over</span>
+            <span class="philosophy-contrast">Speed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       EXAMPLE OUTPUT SECTION
+  ======================================== -->
+  <section class="example-output" id="example">
+    <div class="container">
+      <span class="section-label fade-in">Example Output</span>
+      <h2 class="section-headline fade-in">What a Decision Looks Like</h2>
+      <!-- Added glow effect to output card -->
+      <div class="output-card fade-in scale-in">
+        <div class="output-glow"></div>
+        <div class="output-header">
+          <span class="output-badge pulse-badge">Strategy Decision</span>
+          <span class="output-timestamp">Generated from 12 signals</span>
+        </div>
+        <div class="output-body">
+          <div class="output-row output-primary">
+            <span class="output-label">Best Move</span>
+            <span class="output-value">Accelerate product launch in enterprise segment</span>
+          </div>
+          <div class="output-row">
+            <span class="output-label">Focus</span>
+            <span class="output-value">Security certifications and compliance messaging</span>
+          </div>
+          <div class="output-row">
+            <span class="output-label">Urgency</span>
+            <span class="output-value urgency-high">
+              <span class="urgency-dot"></span>
+              High — competitor announcement expected Q2
+            </span>
+          </div>
+          <div class="output-row">
+            <span class="output-label">What to Avoid</span>
+            <span class="output-value">Price competition in SMB market</span>
+          </div>
+          <div class="output-row output-explanation">
+            <span class="output-label">Explanation</span>
+            <span class="output-value">Competitor X's hiring patterns and patent filings indicate enterprise pivot. Their current security gaps create a 6-month window. Three independent signals confirm timing.</span>
+          </div>
+          <div class="output-row">
+            <span class="output-label">Confidence</span>
+            <div class="confidence-bar">
+              <!-- Added animated confidence fill -->
+              <div class="confidence-track">
+                <div class="confidence-fill animate-fill" data-width="87"></div>
+              </div>
+              <span class="confidence-value">87%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FINAL CTA SECTION
+  ======================================== -->
+  <section class="cta-final" id="cta-final">
+    <!-- Added animated background -->
+    <div class="cta-bg">
+      <div class="cta-glow"></div>
+    </div>
+    <div class="container">
+      <div class="cta-content fade-in">
+        <h2>Make Defensible Decisions</h2>
+        <p>Stop guessing. Start knowing. Every decision backed by structured signals and transparent logic.</p>
+        <button class="btn btn-primary btn-large btn-glow" id="cta-final-btn">
+          <span>Get Started Today</span>
+          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <span class="cta-note">No credit card required. See results in minutes.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FOOTER
+  ======================================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo-icon">◇</span>
+        <span>Clarity</span>
+      </div>
+      <p class="footer-tagline">Deterministic strategy decisions.</p>
+      <div class="footer-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#differentiators">Why Us</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#philosophy">Philosophy</a>
+      </div>
+      <p class="footer-copyright">© 2026 Clarity Engine. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
