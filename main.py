@@ -1,5 +1,72 @@
 # ==================================================
-# PRODUCTION-GRADE FASTHTML APP WITH SUPABASE
+# APSW / APSWUTILS / FASTLITE STUBS — REQUIRED FOR VERCEL
+# MUST BE FIRST - BEFORE ANY OTHER IMPORTS
+# ==================================================
+import sys
+import types
+
+# ---------------- apsw (native) ----------------
+fake_apsw = types.ModuleType("apsw")
+fake_apsw.ext = types.ModuleType("ext")
+fake_apsw.bestpractice = types.ModuleType("bestpractice")
+fake_apsw.unicode = types.ModuleType("unicode")
+fake_apsw._unicode = types.ModuleType("_unicode")  # Add this for unicode module
+
+sys.modules["apsw"] = fake_apsw
+sys.modules["apsw.ext"] = fake_apsw.ext
+sys.modules["apsw.bestpractice"] = fake_apsw.bestpractice
+sys.modules["apsw.unicode"] = fake_apsw.unicode
+sys.modules["apsw._unicode"] = fake_apsw._unicode
+
+# ---------------- apswutils (package) ----------------
+fake_apswutils = types.ModuleType("apswutils")
+fake_apswutils.__path__ = []
+fake_apswutils.Database = object
+sys.modules["apswutils"] = fake_apswutils
+
+# ---------------- apswutils.db ----------------
+fake_apswutils_db = types.ModuleType("apswutils.db")
+
+class NotFoundError(Exception):
+    pass
+
+fake_apswutils_db.Database = object
+fake_apswutils_db.NotFoundError = NotFoundError
+
+sys.modules["apswutils.db"] = fake_apswutils_db
+
+# ---------------- apswutils.utils ----------------
+fake_apswutils_utils = types.ModuleType("apswutils.utils")
+
+def _noop(*args, **kwargs):
+    return None
+
+fake_apswutils_utils.rows_from_file = _noop
+fake_apswutils_utils.TypeTracker = object
+fake_apswutils_utils.Format = object
+
+sys.modules["apswutils.utils"] = fake_apswutils_utils
+
+# ---------------- fastlite ----------------
+fake_fastlite = types.ModuleType("fastlite")
+fake_fastlite.__path__ = []
+
+# Stub out the main classes and functions
+fake_fastlite.Database = object
+fake_fastlite.database = _noop
+fake_fastlite.NotFoundError = NotFoundError
+
+# Core module
+fake_fastlite_core = types.ModuleType("fastlite.core")
+fake_fastlite_core.Database = object
+fake_fastlite_core.database = _noop
+fake_fastlite_core.NotFoundError = NotFoundError
+
+sys.modules["fastlite"] = fake_fastlite
+sys.modules["fastlite.core"] = fake_fastlite_core
+
+# ==================================================
+# NOW SAFE TO IMPORT FASTHTML / MONSTERUI
 # ==================================================
 from fasthtml.common import *
 from monsterui.all import *
