@@ -1,4 +1,26 @@
 # ==================================================
+# APSW / APSWUTILS STUB — REQUIRED FOR VERCEL
+# MUST BE FIRST
+# ==================================================
+import sys
+import types
+
+fake_apsw = types.ModuleType("apsw")
+fake_apsw.ext = types.ModuleType("ext")
+fake_apsw.bestpractice = types.ModuleType("bestpractice")
+fake_apsw.unicode = types.ModuleType("unicode")
+
+sys.modules["apsw"] = fake_apsw
+sys.modules["apsw.ext"] = fake_apsw.ext
+sys.modules["apsw.bestpractice"] = fake_apsw.bestpractice
+sys.modules["apsw.unicode"] = fake_apsw.unicode
+
+fake_apswutils = types.ModuleType("apswutils")
+fake_apswutils.Database = object
+sys.modules["apswutils"] = fake_apswutils
+
+
+# ==================================================
 # NOW SAFE TO IMPORT FASTHTML / MONSTERUI
 # ==================================================
 from fasthtml.common import *
