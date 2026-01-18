@@ -16,14 +16,15 @@ sys.modules["apsw.ext"] = fake_apsw.ext
 sys.modules["apsw.bestpractice"] = fake_apsw.bestpractice
 sys.modules["apsw.unicode"] = fake_apsw.unicode
 
-# ---- apswutils stub (must be a package) ----
+# ---- apswutils stub (package) ----
 fake_apswutils = types.ModuleType("apswutils")
-fake_apswutils.__path__ = []  # marks it as a package
+fake_apswutils.__path__ = []          # mark as package
+fake_apswutils.Database = object      # <-- REQUIRED by fasthtml
 sys.modules["apswutils"] = fake_apswutils
 
-# ---- apswutils.db stub (required by fastlite) ----
+# ---- apswutils.db stub ----
 fake_apswutils_db = types.ModuleType("apswutils.db")
-fake_apswutils_db.Database = object
+fake_apswutils_db.Database = object   # <-- REQUIRED by fastlite
 sys.modules["apswutils.db"] = fake_apswutils_db
 
 # ==================================================
@@ -31,6 +32,7 @@ sys.modules["apswutils.db"] = fake_apswutils_db
 # ==================================================
 from fasthtml.common import *
 from monsterui.all import *
+
 
 
 from backend.middleware import require_auth
