@@ -1,0 +1,113 @@
+📘 PHASE 3 DOCUMENTATION
+
+Advisor LLM – Strategy Explanation Layer
+
+1. Purpose of Phase 3
+
+Phase 3 explains decisions that have already been made.
+
+It exists to:
+
+Translate structured strategy decisions into human language
+
+Increase clarity, confidence, and actionability
+
+Provide reasoning without adding intelligence
+
+Phase 3 never influences outcomes.
+
+2. Role Definition
+LLM Role: Advisor (LLM #2)
+Capability	Allowed
+Explain a strategy	✅
+Rephrase decisions clearly	✅
+Provide rationale	✅
+Change strategy	❌
+Introduce new facts	❌
+Reinterpret signals	❌
+Read raw user text	❌
+
+Phase 3 is downstream-only and explanation-only.
+
+3. Input Contract (Strict)
+
+Phase 3 receives only compressed, system-approved input.
+
+{
+  "strategy_type": "positioning_response | pricing_response | wait_and_observe",
+  "focus": "string",
+  "urgency": "low | medium | high",
+  "signals": ["string"]
+}
+
+Key Rules
+
+No competitor names unless explicitly included
+
+No raw text
+
+No prices unless already decided
+
+Signals are labels, not narratives
+
+4. Output Contract
+
+Phase 3 must output valid JSON only:
+
+{
+  "advice": "string",
+  "reason": "string",
+  "confidence": "low | medium | high"
+}
+
+Interpretation
+
+advice → What to do
+
+reason → Why this works (based only on input)
+
+confidence → How strongly the system believes this applies
+
+5. Enforcement & Safety
+
+Phase 3 is protected by:
+
+Schema validation (input & output)
+
+Prompt-level constraints
+
+No access to raw user input
+
+No access to strategy rules
+
+If Phase 3 output is removed, the system decision remains unchanged.
+
+6. Failure Modes (Expected & Correct)
+Scenario	Behavior
+Invalid JSON	Reject output
+Extra fields	Reject output
+Hallucinated facts	Reject output
+Strategy mismatch	Reject output
+
+Rejection is a feature, not a bug.
+
+7. Phase 3 Exit Criteria (LOCK)
+
+Phase 3 is considered DONE and FROZEN when:
+
+ Output always validates against schema
+
+ No strategy drift is possible
+
+ No new facts appear
+
+ Removing Phase 3 does not change outcomes
+
+ Tone is consistent and neutral
+
+Once locked, Phase 3 should never be expanded with logic.
+
+8. Phase 3 Mental Model (Pin This)
+
+Phase 3 speaks.
+It does not think.

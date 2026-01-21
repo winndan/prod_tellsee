@@ -1,0 +1,262 @@
+📘 Phase 4 — Orchestration, Caching & Control Plane
+Phase Name
+
+Phase 4: Deterministic Orchestration & Cost Control
+
+Purpose of Phase 4
+
+Phase 4 is the control plane of the system.
+
+Its job is to:
+
+Enforce boundaries between AI and logic
+
+Orchestrate the end-to-end workflow
+
+Apply caching and cost control
+
+Guarantee deterministic behavior
+
+Ensure the user always receives a safe, explainable response
+
+Phase 4 does NOT think.
+It coordinates components that think.
+
+Phase 4 Responsibilities (Non-Negotiable)
+
+Phase 4 is responsible for:
+
+Input validation
+
+Calling the Analyst (Phase 2)
+
+Hashing structured signals
+
+Cache lookup (Redis)
+
+Strategy execution (Phase 1)
+
+Calling the Advisor (Phase 3)
+
+Caching the final response
+
+Returning a user-ready result
+
+Phase 4 owns control flow, not intelligence.
+
+High-Level Flow
+User Text
+   ↓
+Input Validation
+   ↓
+Phase 2: Analyst (LLM)
+   ↓
+Structured Signals
+   ↓
+Context Hash
+   ↓
+Redis Cache Lookup
+   ├─ HIT → return cached response
+   └─ MISS
+        ↓
+     Phase 1: Strategy Engine (Code)
+        ↓
+     Strategy Decision
+        ↓
+     Phase 3: Advisor (LLM)
+        ↓
+     Final User Response
+        ↓
+     Cache Result
+
+Why Phase 4 Always Runs the Analyst
+
+Design decision:
+
+Phase 2 (Analyst) always runs, even on cache hits.
+
+Why this is correct
+
+Cache keys are derived from structured meaning, not raw text
+
+Meaning must be extracted before hashing
+
+Skipping the Analyst risks incorrect cache hits
+
+Resulting guarantee
+Component	Cache Miss	Cache Hit
+Phase 2 (Analyst)	✅ Runs	✅ Runs
+Phase 1 (Strategy)	✅ Runs	❌ Skipped
+Phase 3 (Advisor)	✅ Runs	❌ Skipped
+
+This ensures correctness over shortcuts.
+
+Caching Strategy (Redis)
+What is cached
+
+✔ Only the final user-ready response
+
+{
+  "best_move": "...",
+  "focus": "...",
+  "urgency": "...",
+  "avoid": [...],
+  "advice": "...",
+  "reason": "...",
+  "confidence": "..."
+}
+
+What is NOT cached
+
+❌ Raw user text
+❌ Analyst output
+❌ Strategy internals
+❌ Partial results
+
+Cache Key Design
+
+Cache key = hash of structured signals
+
+hash = SHA256(JSON(structured_signals))
+
+Why this matters
+
+Different wording → same meaning → same cache key
+
+Prevents prompt-level cache fragmentation
+
+Enables replayability and auditability
+
+Cache Failure Policy (Fail-Open)
+
+Redis is treated as an optimization, not a dependency.
+
+If Redis fails:
+
+The system continues
+
+No user impact
+
+No exception propagation
+
+Full pipeline still executes
+
+This is intentional.
+
+Redis in Production vs Tests
+Production
+
+Uses Upstash Redis
+
+External, persistent
+
+TTL-based eviction
+
+Cost-saving optimization
+
+Unit Tests
+
+Redis is monkey-patched
+
+In-memory dictionary used
+
+No network calls
+
+Fully deterministic tests
+
+Unit tests never depend on Redis.
+
+Determinism Guarantees
+
+Phase 4 guarantees determinism in:
+
+Control flow
+
+Strategy selection
+
+Cache behavior
+
+Execution order
+
+Phase 4 does NOT guarantee deterministic language, because:
+
+LLMs are probabilistic
+
+Language variation is acceptable
+
+Behavior correctness > textual equality
+
+Testing Philosophy for Phase 4
+What we test ✅
+
+Analyst always runs
+
+Advisor is skipped on cache hit
+
+Cache short-circuits correctly
+
+No duplicate LLM calls
+
+Correct orchestration order
+
+What we do NOT test ❌
+
+Exact wording of advice
+
+LLM creativity
+
+Text equality across runs
+
+Behavior is the invariant, not text.
+
+Common Pitfalls (Avoided by Design)
+Pitfall	Why It’s Wrong
+Caching raw text	Meaning ≠ wording
+Skipping Analyst on hit	Breaks correctness
+Letting LLM decide strategy	Non-deterministic
+Redis-dependent tests	Flaky, slow
+String equality assertions	Invalid for LLMs
+Phase 4 Boundaries
+
+Phase 4 MUST NOT:
+
+Modify strategy logic
+
+Interpret competitor intent
+
+Rewrite LLM output
+
+Invent signals
+
+Persist business data
+
+Phase 4 ONLY orchestrates.
+
+Relationship to Other Phases
+Phase	Role
+Phase 1	Deterministic strategy engine
+Phase 2	Language → structured signals
+Phase 3	Explanation of decisions
+Phase 4	Orchestration, caching, control
+
+Phase 4 is the glue — not the brain.
+
+One-Sentence Definition (Phase 4)
+
+Phase 4 coordinates the system: it validates input, extracts meaning, enforces caching, executes strategy, explains decisions, and guarantees deterministic control flow.
+
+Final Mental Model (Pin This)
+LLMs understand.
+Code decides.
+Phase 4 controls.
+Redis optimizes.
+
+Status
+
+✔ Architecture locked
+✔ Cache verified
+✔ Tests corrected
+✔ Failure modes handled
+✔ Production-ready
+
+Phase 4 is complete and correct.

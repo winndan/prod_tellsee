@@ -30,7 +30,7 @@ class PriceInfo(str, Enum):
     UNKNOWN = "unknown"
 
 
-# 🔥 NEW — competitive edge enums (used once rules depend on them)
+# NEW - competitive edge enums
 
 class ExecutionQuality(str, Enum):
     STRONG = "strong"

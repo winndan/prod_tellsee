@@ -58,9 +58,15 @@ def extract_json_block(text: str) -> str:
 
 
 def safe_enum(enum_cls, value, default):
+    """
+    Safely convert string value to enum, with fallback.
+    """
+    if value is None:
+        return default
+    
     try:
         return enum_cls(value)
-    except Exception:
+    except (ValueError, KeyError):
         return default
 
 
@@ -70,35 +76,35 @@ def safe_enum(enum_cls, value, default):
 
 def extract_signals(raw_text: str) -> ExtractedContext:
     """
-    Phase 2 — LLM Analyst
+    Phase 2 - LLM Analyst
 
     Converts raw competitor text into a domain-safe ExtractedContext
     using strict enums and validated structure.
     """
 
     if not raw_text or len(raw_text) > 3000:
-        raise ValueError("Input exceeds 3000 characters")
+        raise ValueError("Input must be between 1 and 3000 characters")
 
-    # 1️⃣ Run LLM
+    # 1. Run LLM
     result = analyst_agent.run_sync(raw_text)
     raw_output = result.output
     clean_output = extract_json_block(raw_output)
 
-    # 2️⃣ Parse JSON
+    # 2. Parse JSON
     try:
         parsed = json.loads(clean_output)
-    except json.JSONDecodeError:
+    except json.JSONDecodeError as e:
         raise ValueError(
-            f"LLM did not return valid JSON.\nRaw output:\n{raw_output}"
+            f"LLM did not return valid JSON.\nRaw output:\n{raw_output}\nError: {e}"
         )
 
-    # 3️⃣ Validate LLM-facing schema (strings only)
+    # 3. Validate LLM-facing schema (strings only)
     try:
         validated = ExtractedContextSchema(**parsed)
     except Exception as e:
-        raise ValueError(f"LLM output failed schema validation: {e}")
+        raise ValueError(f"LLM output failed schema validation: {e}\nParsed data: {parsed}")
 
-    # 4️⃣ Convert to domain models with enum safety
+    # 4. Convert to domain models with enum safety
     competitors = []
 
     for c in validated.competitors:
@@ -111,17 +117,17 @@ def extract_signals(raw_text: str) -> ExtractedContext:
             price_info=safe_enum(PriceInfo, s.price_info, PriceInfo.UNKNOWN),
             execution_quality=safe_enum(
                 ExecutionQuality,
-                getattr(s, "execution_quality", None),
+                s.execution_quality,
                 ExecutionQuality.UNKNOWN,
             ),
             messaging_strength=safe_enum(
                 MessagingStrength,
-                getattr(s, "messaging_strength", None),
+                s.messaging_strength,
                 MessagingStrength.UNKNOWN,
             ),
             market_confusion=safe_enum(
                 MarketConfusion,
-                getattr(s, "market_confusion", None),
+                s.market_confusion,
                 MarketConfusion.UNKNOWN,
             ),
         )

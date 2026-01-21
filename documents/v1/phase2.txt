@@ -1,0 +1,145 @@
+📘 PHASE 2 DOCUMENTATION
+
+LLM Analyst – Language → Signals Layer
+
+1. Purpose of Phase 2
+
+Phase 2 interprets unstructured human language and extracts structured competitive signals.
+
+It exists to answer one question only:
+
+What factual signals can be reliably extracted from the user’s description?
+
+Phase 2 does not decide strategy and does not explain decisions.
+
+2. Role Definition
+Role: Analyst (LLM #1)
+Capability	Allowed
+Read unstructured text	✅
+Extract events & signals	✅
+Normalize ambiguity	✅
+Infer strategy	❌
+Recommend actions	❌
+Explain implications	❌
+Use memory/history	❌
+
+The Analyst understands language but has no business authority.
+
+3. Input Contract (Strict)
+
+Phase 2 accepts raw natural language text only.
+
+Maximum length: 3000 characters
+
+No required structure
+
+No required fields
+
+No context from previous inputs
+
+Example:
+
+“Competitor A launched a new product. People are excited but confused. No pricing yet.”
+
+4. Output Contract (Strict)
+
+Phase 2 outputs structured JSON only, matching this schema:
+
+{
+  "competitors": [
+    {
+      "name": "string",
+      "signals": {
+        "event": "new_product_launch | price_change | none",
+        "sentiment": "positive | mixed_positive | neutral | negative | unknown",
+        "clarity": "clear | confusing | unknown",
+        "price_info": "lower | higher | same | unknown"
+      }
+    }
+  ],
+  "market_signals": ["string"],
+  "user_intent": "seeking_response | monitoring | comparison"
+}
+
+5. Enforcement & Guarantees
+
+Phase 2 is enforced by the system, not trust.
+
+Input length validation
+
+JSON-only parsing
+
+Schema validation
+
+Enum constraints
+
+Invalid output is discarded, not corrected.
+
+6. Forbidden Behaviors
+
+Phase 2 must never:
+
+Recommend actions
+
+Suggest strategies
+
+Rank competitors
+
+Compare winners vs losers
+
+Explain implications
+
+If the output “sounds insightful”, it is wrong.
+
+7. Failure Modes & Expected Behavior
+Scenario	Output
+Missing information	"unknown"
+Ambiguous wording	"unknown"
+No clear competitor	competitors = []
+Invalid JSON	Reject
+Schema mismatch	Reject
+
+Rejection is correct behavior.
+
+8. Relationship to Other Phases
+Phase 2 → Phase 1 → Phase 3
+
+
+Phase 2 feeds Phase 1
+
+Phase 3 consumes Phase 1
+
+Phase 2 and Phase 3 never interact directly
+
+9. Phase 2 Mental Model (Pin This)
+
+Phase 2 understands language.
+It does not understand business.
+
+10. One-Sentence Phase Definition
+
+Phase 2 extracts structured competitive signals from unstructured user input without making decisions or recommendations.
+
+🔒 COMPLETE PHASE ALIGNMENT (NOW COMPLETE)
+
+All three phases now follow the same documentation pattern:
+
+Section	Phase 1	Phase 2	Phase 3
+Purpose	Decide	Extract	Explain
+Role	Strategist	Analyst	Advisor
+Input	Structured	Unstructured	Structured
+Output	Structured	Structured	Structured
+AI Usage	❌	✅	✅
+Authority	Final	None	None
+
+This symmetry is intentional and protects the system.
+
+🧠 FINAL SYSTEM TRUTH (PIN THIS)
+
+Phase 2 interprets
+
+Phase 1 decides
+
+Phase 3 explains
+
+Nothing overlaps.

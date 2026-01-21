@@ -44,4 +44,6 @@ Return ONLY valid JSON in the following format:
   "reason": "<logical justification tied to the signals>",
   "confidence": "low | medium | high"
 }
+
+Do not include any text before or after the JSON object.
 """

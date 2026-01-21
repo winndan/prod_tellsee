@@ -1,0 +1,88 @@
+📘 Competitive Intelligence Engine
+Phase 1–Phase 4 Documentation (Final)
+🧠 System Goal (Context)
+
+The system provides competitive analysis with strategic edge by:
+
+Interpreting messy competitor information
+
+Converting it into structured competitive signals
+
+Making deterministic strategy decisions
+
+Explaining decisions clearly and defensibly
+
+Key principle:
+
+Only perception is probabilistic. Decisions are deterministic.
+
+🔹 Phase 1 — Strategy Engine (Decision Layer)
+🎯 Purpose
+
+Make a single, deterministic strategy decision based on structured competitive signals.
+
+🚫 What Phase 1 does NOT do
+
+Does not call LLMs
+
+Does not interpret raw text
+
+Does not guess or speculate
+
+Does not explain decisions
+
+📥 Input
+
+ExtractedContext (domain dataclass)
+
+ExtractedContext(
+  competitors: List[Competitor],
+  market_signals: List[str],
+  user_intent: str
+)
+
+
+Each competitor includes enum-safe signals:
+
+event
+
+sentiment
+
+clarity
+
+price_info
+
+execution_quality
+
+messaging_strength
+
+market_confusion
+
+⚙️ Processing
+
+Rules are evaluated in order
+
+First matching rule wins
+
+If no rule matches → fallback strategy
+
+WAIT → monitoring → low urgency
+
+📤 Output
+
+StrategyDecision
+
+{
+  "strategy_type": "positioning_response | pricing_response | wait_and_observe",
+  "focus": "...",
+  "urgency": "low | medium | high",
+  "avoid": [...]
+}
+
+✅ Guarantees
+
+Same input → same decision
+
+Fully auditable
+
+No randomness

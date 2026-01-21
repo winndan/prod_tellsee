@@ -63,6 +63,12 @@ def force_json(text: str) -> dict:
         idx = text.find("{")
         if idx != -1:
             text = text[idx:]
+    
+    # Strip trailing prose if present
+    if not text.endswith("}"):
+        idx = text.rfind("}")
+        if idx != -1:
+            text = text[:idx + 1]
 
     return json.loads(text)
 
@@ -71,17 +77,17 @@ def force_json(text: str) -> dict:
 # ----------------------------
 def explain_strategy(payload: dict) -> AdvisorOutputSchema:
     """
-    Phase 3 — Advisor LLM
+    Phase 3 - Advisor LLM
 
     Explains a FINAL strategy decision.
     Does NOT invent strategy.
     Does NOT modify decisions.
     """
 
-    # 1️⃣ Validate input schema
+    # 1. Validate input schema
     validated_input = AdvisorInputSchema(**payload)
 
-    # 2️⃣ Send structured JSON AS TEXT (CRITICAL)
+    # 2. Send structured JSON AS TEXT (CRITICAL)
     result = advisor_agent.run_sync(
         json.dumps(validated_input.model_dump(), indent=2)
     )
@@ -89,18 +95,18 @@ def explain_strategy(payload: dict) -> AdvisorOutputSchema:
     raw_output = result.output
     clean_output = extract_json_block(raw_output)
 
-    # 3️⃣ Enforce JSON-only output
+    # 3. Enforce JSON-only output
     try:
         parsed = force_json(clean_output)
-    except Exception:
+    except Exception as e:
         raise ValueError(
-            f"Advisor LLM did not return valid JSON.\nRaw output:\n{raw_output}"
+            f"Advisor LLM did not return valid JSON.\nRaw output:\n{raw_output}\nError: {e}"
         )
 
-    # 4️⃣ Validate output schema
+    # 4. Validate output schema
     try:
         validated_output = AdvisorOutputSchema(**parsed)
     except Exception as e:
-        raise ValueError(f"Advisor output failed validation: {e}")
+        raise ValueError(f"Advisor output failed validation: {e}\nParsed data: {parsed}")
 
     return validated_output

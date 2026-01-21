@@ -1,4 +1,4 @@
-from db.supabase_client import supabase
+from dbase.supabase_client import supabase
 
 
 def load_snapshot_from_supabase(business_id: str) -> str:

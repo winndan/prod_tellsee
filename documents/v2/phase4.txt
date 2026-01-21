@@ -1,0 +1,72 @@
+🔹 Phase 4 — Controller / Orchestration
+🎯 Purpose
+
+Coordinate the full pipeline in a safe, repeatable, cacheable way.
+
+📥 Entry Points
+
+handle_request(raw_text)
+
+handle_request_from_business(business_id)
+
+⚙️ Pipeline Flow
+Input
+ ↓
+Validation
+ ↓
+Phase 2 — Extract Signals
+ ↓
+Hash + Cache
+ ↓
+Phase 1 — Decide Strategy
+ ↓
+Phase 3 — Explain Strategy
+ ↓
+Build Response
+ ↓
+Cache Result
+
+🔐 Caching Strategy
+
+Hashes extracted meaning, not raw text
+
+Prevents redundant computation
+
+Recommended: also cache Phase 2 output for stability
+
+📤 Final Output
+{
+  "best_move": "...",
+  "focus": "...",
+  "urgency": "...",
+  "avoid": [...],
+  "advice": "...",
+  "reason": "...",
+  "confidence": "..."
+}
+
+🧩 Key Design Principles (Final)
+
+Probabilistic → Deterministic → Explanatory
+
+Schemas over trust
+
+Enums over strings
+
+LLMs never decide
+
+“Wait” is a valid strategy
+
+Different runs ≠ bad reasoning
+
+✅ Current System State
+
+Architecture: ✅ Final
+
+Phase boundaries: ✅ Clean
+
+Determinism: ✅ Guaranteed post-analysis
+
+Explainability: ✅ High
+
+Production hardening: 🟡 In progress (retries, caching)

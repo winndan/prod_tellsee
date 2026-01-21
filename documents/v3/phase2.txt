@@ -1,0 +1,69 @@
+🔹 Phase 2 — LLM Analyst (Perception Layer)
+🎯 Purpose
+
+Convert messy, real-world competitor information into structured competitive signals.
+
+This is the only probabilistic phase.
+
+🚫 What Phase 2 Does NOT Do
+
+Does not decide strategy
+
+Does not recommend actions
+
+Does not explain implications
+
+Does not invent facts
+
+Does not reuse values across fields
+
+📥 Input
+
+Raw natural language text (≤ 3000 characters)
+
+Example:
+
+“A competitor seems cheaper now, people online are confused, pricing isn’t clear yet.”
+
+⚙️ Processing
+
+LLM is constrained by:
+
+strict field definitions
+
+enum-only values
+
+JSON-only output
+
+Output is validated against schema
+
+Converted to enum-safe domain models
+
+📤 Output
+
+ExtractedContext
+
+{
+  "competitors": [
+    {
+      "name": "Competitor A",
+      "signals": {
+        "event": "price_change",
+        "sentiment": "mixed_positive",
+        "clarity": "confusing",
+        "price_info": "unknown",
+        "market_confusion": "high"
+      }
+    }
+  ],
+  "market_signals": [],
+  "user_intent": "seeking_response"
+}
+
+⚠️ Known Property
+
+Same input may produce slightly different signals
+
+This is expected LLM behavior
+
+Downstream determinism + caching mitigates risk

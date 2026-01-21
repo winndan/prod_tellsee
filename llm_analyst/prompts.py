@@ -32,7 +32,7 @@ execution_quality:
 - Allowed values: strong, average, weak, unknown
 
 messaging_strength:
-- How clear and differentiated the competitor’s messaging is
+- How clear and differentiated the competitor's messaging is
 - NOT sentiment
 - NOT execution
 
@@ -113,4 +113,5 @@ Return JSON with this exact structure:
 DO NOT reuse sentiment values for execution.
 If unsure, use "unknown".
 ONLY return valid JSON.
+Do not include any text before or after the JSON object.
 """

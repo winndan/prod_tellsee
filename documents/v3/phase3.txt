@@ -1,0 +1,55 @@
+🔹 Phase 3 — LLM Advisor (Explanation Layer)
+🎯 Purpose
+
+Explain why a decision was made, without influencing it.
+
+Phase 3 speaks. It does not think.
+
+🚫 What Phase 3 Does NOT Do
+
+Does not change strategy
+
+Does not suggest alternatives
+
+Does not add new facts
+
+Does not read raw user text
+
+📥 Input
+
+AdvisorInputSchema
+
+{
+  "strategy_type": "...",
+  "focus": "...",
+  "urgency": "low | medium | high",
+  "signals": ["labelled signal summaries"]
+}
+
+⚙️ Processing
+
+Input validated strictly
+
+Passed to LLM as JSON only
+
+Prompt enforces explanation-only behavior
+
+Output validated against schema
+
+📤 Output
+
+AdvisorOutputSchema
+
+{
+  "advice": "string",
+  "reason": "string",
+  "confidence": "low | medium | high"
+}
+
+✅ Guarantees
+
+Explanation matches the decision
+
+No hallucinated strategies
+
+No reinterpretation of signals

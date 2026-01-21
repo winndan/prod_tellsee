@@ -1,0 +1,82 @@
+🔹 Phase 1 — Strategy Engine (Decision Layer)
+🎯 Purpose
+
+Make a single, deterministic decision about whether a business should react or deliberately not react to a competitor move.
+
+This phase answers one question only:
+
+Given what we reliably know right now, what is the safest rational move?
+
+🚫 What Phase 1 Does NOT Do
+
+Does not call LLMs
+
+Does not read raw text
+
+Does not speculate or guess
+
+Does not explain decisions
+
+Does not optimize pricing or forecast outcomes
+
+📥 Input
+
+ExtractedContext (structured, enum-safe)
+
+ExtractedContext(
+  competitors: List[Competitor],
+  market_signals: List[str],
+  user_intent: str
+)
+
+
+Each competitor contains only structured signals, such as:
+
+event
+
+sentiment
+
+clarity
+
+price_info
+
+execution_quality
+
+messaging_strength
+
+market_confusion
+
+⚙️ Processing
+
+Rules are evaluated in priority order
+
+The first matching rule wins
+
+If no rule matches → conservative fallback
+
+Default fallback
+
+strategy_type: wait_and_observe
+
+urgency: low
+
+📤 Output
+
+StrategyDecision
+
+{
+  "strategy_type": "positioning_response | pricing_response | wait_and_observe",
+  "focus": "string",
+  "urgency": "low | medium | high",
+  "avoid": []
+}
+
+✅ Guarantees
+
+Same input → same decision
+
+Fully auditable
+
+Stateless and replayable
+
+WAIT is a first-class, intentional outcome

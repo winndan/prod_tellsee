@@ -1,0 +1,50 @@
+🔹 Phase 4 — Controller / Orchestration Layer
+🎯 Purpose
+
+Coordinate the entire pipeline in a safe, repeatable, and cost-controlled way.
+
+Phase 4 controls flow, not intelligence.
+
+📥 Entry Points
+
+handle_request(raw_text)
+
+handle_request_from_business(business_id)
+
+⚙️ Pipeline Flow
+Input
+ ↓
+Validation
+ ↓
+Phase 2 — Extract Signals
+ ↓
+Hash Structured Meaning
+ ↓
+Cache Lookup
+ ↓
+Phase 1 — Decide Strategy
+ ↓
+Phase 3 — Explain Strategy
+ ↓
+Build Final Decision JSON
+ ↓
+Cache Result
+
+🔐 Caching Strategy
+
+Cache key = hash of structured signals
+
+Meaning-based, not text-based
+
+Redis treated as optimization, not dependency
+
+📤 Canonical Final Output
+{
+  "best_move": "...",
+  "focus": "...",
+  "urgency": "...",
+  "avoid": [],
+  "advice": "...",
+  "reason": "...",
+  "confidence": "..."
+}

@@ -1,0 +1,67 @@
+🎯 Purpose
+
+Present the same final decision in multiple formats without changing meaning.
+
+🚫 What Phase 5 Does NOT Do
+
+Does not call LLMs
+
+Does not reinterpret content
+
+Does not summarize differently
+
+Does not add insight
+
+📥 Input
+
+Final canonical output JSON from Phase 4.
+
+⚙️ Outputs
+1️⃣ Text View (Default)
+
+Immediate, structured text
+
+Fast consumption
+
+Same content every time
+
+2️⃣ Infographic View (Optional)
+
+User-triggered
+
+Deterministic rendering
+
+Fixed templates per strategy type
+
+Sections include:
+
+Decision summary
+
+Urgency & confidence
+
+Explanation (why)
+
+Strategic focus
+
+Actions to avoid
+
+Decision ID & timestamp
+
+🎨 Image Generator AI Rule
+
+Allowed only at design-time for templates
+
+Forbidden at runtime
+
+AI designs the frame once. Code fills it forever.
+
+🧠 Final System Truth
+
+Only perception is probabilistic.
+Decisions, explanations, and presentation are deterministic.
+
+This system doesn’t help businesses win faster —
+
+It helps them avoid losing by reacting badly.
+
+That’s the product.

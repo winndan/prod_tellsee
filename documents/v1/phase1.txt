@@ -1,0 +1,88 @@
+PHASE 1 — FORMAL DOCUMENTATION
+
+This is what you ship internally / investors / auditors.
+
+📘 Phase 1: Strategy Engine (AI-Free Core)
+Purpose
+
+Phase 1 defines a deterministic strategy engine that decides competitive actions without AI.
+
+Scope
+
+Included:
+
+Structured signal interpretation
+
+Rule-based strategy selection
+
+Priority resolution
+
+Immutability guarantees
+
+Excluded:
+
+Text parsing
+
+AI inference
+
+UI interaction
+
+Persistence
+
+Inputs
+ExtractedContext
+
+
+Contains:
+
+Competitors (structured signals only)
+
+Market signals
+
+User intent
+
+🚫 Raw text is never allowed beyond Phase 2.
+
+Outputs
+StrategyDecision
+
+
+Includes:
+
+Strategy type
+
+Strategic focus
+
+Urgency
+
+Explicit actions to avoid
+
+Design Principles
+
+LLM-agnostic
+
+Stateless
+
+Replayable
+
+Auditable
+
+Test-driven
+
+Rule Evaluation Model
+
+Rules return StrategyDecision | None
+
+Rules are evaluated in priority order
+
+First valid decision wins
+
+Default fallback = wait_and_observe
+
+| Scenario            | Outcome               |
+| ------------------- | --------------------- |
+| No signals          | WAIT                  |
+| Conflicting signals | Priority rule         |
+| Partial data        | Conservative decision |
+
+
